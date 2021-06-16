@@ -1,0 +1,46 @@
+java.nio.charset.MalformedInputException: Input length = 1
+	at java.nio.charset.CoderResult.throwException(CoderResult.java:281)
+	at sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:339)
+	at sun.nio.cs.StreamDecoder.read(StreamDecoder.java:178)
+	at java.io.InputStreamReader.read(InputStreamReader.java:184)
+	at java.io.BufferedReader.fill(BufferedReader.java:161)
+	at java.io.BufferedReader.readLine(BufferedReader.java:324)
+	at java.io.BufferedReader.readLine(BufferedReader.java:389)
+	at java.nio.file.Files.readAllLines(Files.java:3205)
+	at java.nio.file.Files.readAllLines(Files.java:3242)
+	at com.mbt.NotepadAdapter.readFile(NotepadAdapter.java:47)
+	at com.mbt.NotepadAdapter.main(NotepadAdapter.java:61)
+
+String jpgPath = "E:\\mtest\\mtest.jpg";
+    @Override
+    public void e_SaveEdit() {
+        System.out.println("Running: e_SaveEdit");
+        String readData = notepadAdapter.readFile(jpgPath)
+		
+		================================================
+		
+		 public String createFile(String fileName, String s) throws Exception {
+       if(fileName.contains(".jpg")) throw new Exception("Invalid file format");
+		
+		Exception in thread "main" java.lang.Exception: Invalid file format
+		--------------------------========================
+		
+		Opening binary file using notepad,
+		
+		@Override
+    public void e_Save() {
+        System.out.println("Running: e_Save");
+        notepadAdapter.saveFile("xyz.bin", "This is text message");
+         assertEquals(textToCreate, notepadAdapter.readFile(FILE_NAME));
+		
+		 
+    String binPath = "demo.bin";
+    @Override
+    public void e_SaveEdit() {
+        System.out.println("Running: e_SaveEdit");
+        String readData = notepadAdapter.readFile(jpgPath) + textToAppend;
+        notepadAdapter.saveFile(FILE_NAME, textToAppend);
+       assertEquals(readData, notepadAdapter.readFile(FILE_NAME) + textToAppend);
+    }
+		
+		

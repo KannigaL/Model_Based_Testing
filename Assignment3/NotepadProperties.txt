@@ -1,0 +1,72 @@
+@RunWith(JUnitQuickcheck.class)
+public class NotepadProperties {
+
+    @Property(trials = 5)
+    public void createNewFile() {
+        System.out.println("User creating File: ");
+        NotePadModel notePadModel = new NotePadModel();
+        notePadModel.e_Create();
+        assertEquals(FILE_NAME, Files.exists(Paths.get(fileName)));
+    }
+	@Property(trials = 5)
+	public static boolean isFilenameValid(String file) {
+		File f = new File(file);
+		try {
+		f.getCanonicalPath();
+		return true;
+		} catch (IOException e) {
+		return false;
+		}
+	}
+    @Property(trials = 5)
+    public void SaveFileProperty() {
+        System.out.println("Checking for File save: ");
+        NotePadModel notePadModel = new NotePadModel();
+        notePadModel.e_Save();
+        assertEquals(FILE_NAME, notepadAdapter.readFile("FILE_NAME"));
+    }
+
+    @Property(trials = 5)
+    public void EditFileProperty() {
+        System.out.println("Checking for edit and save operation: ");
+        NotePadModel notePadModel = new NotePadModel();
+        notePadModel.e_SaveEdit();
+        assertEquals(textToAppend, Files.exists(Paths.get(fileName)));
+    }
+
+}
+-------------------------------
+check if file exists
+public class TemporaryFileExample
+{
+   public static void main(String[] args)
+   {
+      File temp;
+      try
+      {
+         temp = File.createTempFile("myTempFile", ".txt");
+          
+         boolean exists = temp.exists();
+          
+         System.out.println("Temp file exists : " + exists);
+      } catch (IOException e)
+      {
+         e.printStackTrace();
+      }
+   }
+}
+----------------------------------
+delete file on appln exit
+
+File temp = File.createTempFile("myTempFile", ".txt"); 
+temp.deleteOnExit();
+---------------------------------------
+append to existing file
+public static void usingPath() throws IOException 
+{
+    String textToAppend = "\r\n Happy Learning !!"; //new line in content
+     
+    Path path = Paths.get("c:/temp/samplefile.txt");
+  
+    Files.write(path, textToAppend.getBytes(), StandardOpenOption.APPEND);  //Append mode
+}
